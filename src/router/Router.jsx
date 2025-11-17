@@ -5,13 +5,14 @@ import About from "../pages/About";
 import Project from "../pages/Project";
 import Contact from "../pages/Contact";
 import Navbar from "../components/Navbar";
+import Layout from "../pages/Layout";
 
 const RouterPage = () => {
   return (
     <>
-      <Navbar />
+    <Navbar/>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Layout />} />
         <Route path="/about" element={<About />} />
         <Route path="/project" element={<Project />} />
         <Route path="/contact" element={<Contact />} />
