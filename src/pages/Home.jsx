@@ -1,15 +1,26 @@
-import React from "react";
+import React, { useContext } from "react";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
+import { themeContext } from "../context/ThemeContext";
 
 const Home = () => {
+  const { theme, setTheme } = useContext(themeContext);
+  console.log("theme=>", theme, setTheme);
+
+  const handleTheme = () => {
+    if (theme === "light") {
+      setTheme("dark");
+    } else {
+      setTheme("light");
+    }
+  };
   const navigate = useNavigate();
   return (
     <div>
-      <section class="bg-white dark:bg-gray-900  mt-5">
+      <section class={`${theme==="light"?"bg-white":"bg-gray-900"}`}>
         <div class="grid max-w-7xl px-4 py-8 lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12 justify-center  mx-auto">
           <div class="mr-auto flex flex-col items-center place-self-center lg:col-span-7  text-center sm:text-left ">
-            <h1 class="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white">
+            <h1 class={`max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none md:text-5xl xl:text-6xl dark:text-white ${theme==="light"?"text-gray-900":"text-white"}`}>
               Ibrahim khan
             </h1>
             <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
@@ -21,7 +32,9 @@ const Home = () => {
               <Button
                 color="white"
                 title={"See my Profile"}
-                onclick={() => navigate("/https://www.linkedin.com/in/ibrahim~khan/")}
+                onclick={() =>
+                  navigate("/https://www.linkedin.com/in/ibrahim~khan/")
+                }
               />
             </div>
           </div>
@@ -32,6 +45,14 @@ const Home = () => {
               alt="mockup"
             />
           </div>
+        </div>
+        <div>
+          <button
+            onClick={handleTheme}
+            className={`border-2 rounded-2xl p-2 fixed top-20 right-0 cursor-pointer ${theme==="light"? "bg-purple-500 text-white":"text-white bg-gray-900"}`}
+          >
+            {theme === "light" ? "dark" : "light"}
+          </button>
         </div>
       </section>
     </div>

@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Button from "./Button";
+import { themeContext } from "../context/ThemeContext";
 
 const Navbar = () => {
-
+  const {theme} = useContext(themeContext)
+  console.log("theme in navbar =>",theme)
+  
 const navStyle = ({isActive}) => {
     return {
         color: isActive ? "white" : "yellow",
@@ -15,7 +18,7 @@ const navStyle = ({isActive}) => {
 }
 
   return (
-    <div className="flex items-center justify-between bg-blue-700 text-white">
+    <div className={`flex items-center justify-between ${theme==="light"?"bg-blue-500":"bg-gray-900"}`}>
       <div className="flex gap-2">
         <h3>{"<"}</h3>
         <h1>Ibrahim Khan</h1>
