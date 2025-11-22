@@ -2,11 +2,18 @@ import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import Button from "./Button";
 import { themeContext } from "../context/ThemeContext";
+import { useSelector } from "react-redux";
+import ButtonTheme from "./ButtonTheme";
 
 const Navbar = () => {
   const {theme} = useContext(themeContext)
   console.log("theme in navbar =>",theme)
-  
+
+
+const themes = useSelector((state)=>state.theme)
+console.log("themes in redux=>",themes.theme)
+
+
 const navStyle = ({isActive}) => {
     return {
         color: isActive ? "white" : "yellow",
@@ -37,6 +44,8 @@ const navStyle = ({isActive}) => {
        title={"Contact"}
        />
      </div>
+
+     <ButtonTheme/>
 
     </div>
   );

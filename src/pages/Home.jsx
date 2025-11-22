@@ -2,10 +2,15 @@ import React, { useContext } from "react";
 import Button from "../components/Button";
 import { useNavigate } from "react-router-dom";
 import { themeContext } from "../context/ThemeContext";
+import { useSelector } from "react-redux";
 
 const Home = () => {
   const { theme, setTheme } = useContext(themeContext);
-  console.log("theme=>", theme, setTheme);
+  // console.log("theme=>", theme, setTheme);
+
+  const themes = useSelector((state)=>state.theme)
+console.log("themes in home redux=>",themes.theme)
+
 
   const handleTheme = () => {
     if (theme === "light") {
